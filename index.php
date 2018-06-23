@@ -1,0 +1,1 @@
+<img src="https://vignette.wikia.nocookie.net/yandere-simulator-fanon/images/3/38/Pusheen.gif/revision/latest?cb=20170323104013">
