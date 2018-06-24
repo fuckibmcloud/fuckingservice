@@ -32,13 +32,14 @@
             if (request.status === 200) {
               // Parse the JSON
               var jsonOptions = JSON.parse(request.responseText);
+              console.log(jsonOptions);
           
               // Loop over the JSON array.
               jsonOptions.forEach(function(item) {
                 // Create a new <option> element.
                 var option = document.createElement('option');
                 // Set the value using the item in the JSON array.
-                option.value = item.name;
+                option.value = item;
                 // Add the <option> element to the <datalist>.
                 dataList.appendChild(option);
               });
@@ -56,7 +57,7 @@
         input.placeholder = "Načítavam...";
         
         // Set up and make the request.
-        request.open('GET', 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json', true);
+        request.open('GET', '../backend/cities.json', true);
         request.send();
      </script>
         
