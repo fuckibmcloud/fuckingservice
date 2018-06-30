@@ -95,26 +95,17 @@ h3 {
 		    $i = 0;
 				foreach ($days as $day){
 						if($i == 0){
-							echo '<div class="caption today forecast">';
-								echo '<div class="forecast-header">';
-									echo '<div class="day">Today</div>';
+
 									echo '<div class="date">'.$day->date.'</div>';
-								echo '</div>';
-								echo '<div class="forecast-content">';
+
 										echo '<div class="location">'.$weather->location->name.',&nbsp;'.$weather->location->country.'</div>';
-										echo '<div class="degree">';
-											echo '<div class="num">'.$weather->current->temp_c.'<sup>o</sup>C</div>';
-											echo '<div class="forecast-icon">';
+										echo $weather->current->temp_c;
 												echo '<img src="'.$day->day->condition->icon.'" alt="" width=90>';
-											echo '</div>';
-										echo '</div>';
 										/*
 										echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
 										echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
 										echo '<span><img src="images/icon-compass.png" alt="">'.$weather->current->wind_degree.'<sup>o</sup></span>';
 										*/
-									echo '</div>';
-								echo '</div>';
 								$i++;
 						}}
 
