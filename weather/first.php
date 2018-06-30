@@ -8,7 +8,7 @@
 		<title>Oblíbená města</title>
 
 		<!-- Loading third party fonts -->
-		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
 		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 		<!-- Loading main css file -->
@@ -27,7 +27,7 @@
 		<div class="site-content">
 			<div class="site-header">
 				<div class="container">
-					<a href="index.html" class="branding">
+					<a href="index.php" class="branding">
 						<img src="images/logo.png" alt="" class="logo">
 						<div class="logo-type">
 							<h1 class="site-title">CloudWeather</h1>
@@ -39,7 +39,7 @@
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item"><a href="index.html">Domů</a></li>
+							<li class="menu-item"><a href="index.php">Domů</a></li>
 							<li class="menu-item current-menu-item"><a href="first.php">Oblíbená města</a></li>
 							<li class="menu-item"><a target="_blank" href="cws.php">Cloud weather screen</a></li>
 						</ul> <!-- .menu -->
@@ -53,7 +53,7 @@
 			<main class="main-content">
 				<div class="container">
 					<div class="breadcrumb">
-						<a href="index.html">Domů</a>
+						<a href="index.php">Domů</a>
 						<span>Oblíbená města</span>
 					</div>
 				</div>

@@ -66,7 +66,7 @@ $("#weatherCity").autocomplete({
 		<div class="site-content">
 			<div class="site-header">
 				<div class="container">
-					<a href="index.html" class="branding">
+					<a href="index.php" class="branding">
 						<img src="images/logo.png" alt="" class="logo">
 						<div class="logo-type">
 							<h1 class="site-title">CloudWeather</h1>
@@ -78,7 +78,7 @@ $("#weatherCity").autocomplete({
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="index.html">Domů</a></li>
+							<li class="menu-item current-menu-item"><a href="index.php">Domů</a></li>
 							<li class="menu-item"><a href="first.php">Oblíbená města</a></li>
 							<li class="menu-item"><a target="_blank" href="cws.php">Cloud weather screen</a></li>
 						</ul> <!-- .menu -->
