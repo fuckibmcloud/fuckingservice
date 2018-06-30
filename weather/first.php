@@ -40,7 +40,7 @@
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
 							<li class="menu-item"><a href="index.html">Domů</a></li>
-							<li class="menu-item current-menu-item"><a href="first.html">Oblíbená města</a></li>
+							<li class="menu-item current-menu-item"><a href="first.php">Oblíbená města</a></li>
 							<li class="menu-item"><a target="_blank" href="cws.php">Cloud weather screen</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
@@ -66,7 +66,39 @@
 									<div class="photo-preview photo-detail" data-bg-image="images/photo-4.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">Brno</a></h3>
-										<p>Atatem accusantium aperiam eaque quae quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+										<?php
+
+										    $key = "52c736a22dea47b1810101240181505";
+										    $city = "Brno";
+										    $forcast_days = '7';
+										    $url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
+
+										    // demo url = http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=
+
+										    $ch = curl_init();
+										    curl_setopt($ch,CURLOPT_URL,$url);
+										    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+										    $json_output=curl_exec($ch);
+										    $weather = json_decode($json_output);
+
+
+										    $days = $weather->forecast->forecastday;
+										    $i = 0;
+												foreach ($days as $day){
+														if($i == 0){
+																	echo '<p> '.$day->date.' | Teplota: '.$weather->current->temp_c.'°C | <img src="'.$day->day->condition->icon.'" alt="" width=30> | Dnes: '.$weather->forecast->forecastday[0]->day->mintemp_c.'-'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C<br>';
+
+																	echo 'Zítra: '.$weather->forecast->forecastday[1]->day->mintemp_c.' - '.$weather->forecast->forecastday[1]->day->avgtemp_c.' - '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C | <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30></p>';
+																		/*
+																		echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
+																		echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
+																		echo '<span><img src="images/icon-compass.png" alt="">'.$weather->current->wind_degree.'<sup>o</sup></span>';
+																		*/
+																$i++;
+														}}
+
+												?>
 
 									</div>
 								</div>
