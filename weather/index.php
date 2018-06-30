@@ -34,25 +34,23 @@
               type: 'POST',
               url: "../backend/Forcast.php",
               data: {data: weatherCity},
-              //data: weatherData,
-              //dataType: "html",
               success: function(data){
                   $('#forecastTable').replaceWith(data)
               }
           });
         });
 
-var arr = [];
-$.getJSON("../backend/cities.json", function(data) {
-    $.each(data, function(key, value) {
-        if ($.inArray(value.name, arr) === -1) {
-            arr.push(value.name)
-        }
-    })
-});
-$("#weatherCity").autocomplete({
-    source: arr
-});
+      var arr = [];
+      $.getJSON("../backend/cities.json", function(data) {
+          $.each(data, function(key, value) {
+              if ($.inArray(value.name, arr) === -1) {
+                  arr.push(value.name)
+              }
+          })
+      });
+      $("#weatherCity").autocomplete({
+          source: arr
+      });
 
 
     });
@@ -100,100 +98,20 @@ $("#weatherCity").autocomplete({
 			</div>
 
 			<div id="forecastTable" class="forecast-table">
-				<div class="container">
-					<div class="forecast-container">
-						<div class="today forecast">
-							<div class="forecast-header">
-								<div class="day">Pondělí</div>
-								<div class="date">25. června</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="location">Brno</div>
-								<div class="degree">
-									<div class="num">26<sup>o</sup>C</div>
-									<div class="forecast-icon">
-										<img src="images/icons/icon-1.svg" alt="" width=90>
-									</div>
-								</div>
-								<span><img src="images/icon-umberella.png" alt="">10%</span>
-								<span><img src="images/icon-wind.png" alt="">18km/h</span>
-								<span><img src="images/icon-compass.png" alt="">Západní</span>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Úterý</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-3.svg" alt="" width=48>
-								</div>
-								<div class="degree">24<sup>o</sup>C</div>
-								<small>17<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Středa</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-5.svg" alt="" width=48>
-								</div>
-								<div class="degree">25<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Čtvrtek</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-7.svg" alt="" width=48>
-								</div>
-								<div class="degree">27<sup>o</sup>C</div>
-								<small>20<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Pátek</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-12.svg" alt="" width=48>
-								</div>
-								<div class="degree">28<sup>o</sup>C</div>
-								<small>23<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Sobota</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-13.svg" alt="" width=48>
-								</div>
-								<div class="degree">27<sup>o</sup>C</div>
-								<small>20<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Neděle</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-14.svg" alt="" width=48>
-								</div>
-								<div class="degree">26<sup>o</sup>C</div>
-								<small>20<sup>o</sup></small>
-							</div>
-						</div>
-					</div>
-				</div>
+            <script type="text/javascript">
+            $(document).ready(function() { 
+                $(window).load(function() { 
+                    $.ajax({
+                        type: 'POST',
+                        url: "../backend/Forcast.php",
+                        data: {data: 'Brno'},
+                        success: function(data){
+                            $('#forecastTable').replaceWith(data)
+                        }
+                    });
+                });
+            });
+            </script>
 			</div>
 			<main class="main-content">
 
