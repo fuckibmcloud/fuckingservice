@@ -1,99 +1,199 @@
-<style type="text/css">
-  table {
-    border-collapse: collapse;
-    width: 50%;
-    border-top: 3px solid !important;
-}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title>IBM počasí</title>
 
-table, th, td {
-    border: 1px solid black;
-    text-align: center;
-}
-</style>
-<?php
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    $key = "52c736a22dea47b1810101240181505";
-    $city = $_POST['data'];
-    $forcast_days = '7';
-    $url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
-    
-    // demo url = http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="style.css">
+		
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function($){
+      $('#weatherForm').submit(function(event){
+          event.preventDefault();
+          var weatherCity = $('#weatherCity').val();
 
-    $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL,$url);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-
-    $json_output=curl_exec($ch);
-    $weather = json_decode($json_output);
-
-
-    $days = $weather->forecast->forecastday;
-    $i = 0;
-    
-    echo '<div id="forecastTable" class="forecast-table">';
-      echo '<div class="container">';
-        echo '<div class="forecast-container">';
+          $.ajax({
+              type: 'POST',
+              url: "../backend/Forcast.php",
+              data: {data: weatherCity},
+              //data: weatherData,
+              //dataType: "html",
+              success: function(data){
+                  $('#forecastTable').replaceWith(data)
+              }
+          });
+        });
+      });
+    </script>
         
-    foreach ($days as $day){
-        if($i == 0){
-          echo '<div class="today forecast">';
-            echo '<div class="forecast-header">';
-  						echo '<div class="day">Today</div>';
-  						echo '<div class="date">'.$day->date.'</div>';
-  					echo '</div>';
-            echo '<div class="forecast-content">';
-								echo '<div class="location">'.$weather->location->name.',&nbsp;'.$weather->location->country.'</div>';
-								echo '<div class="degree">';
-									echo '<div class="num">'.$weather->current->temp_c.'<sup>o</sup>C</div>';
-									echo '<div class="forecast-icon">';
-										echo '<img src="'.$day->day->condition->icon.'" alt="" width=90>';
-									echo '</div>';
-								echo '</div>';
-                /*
-								echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
-								echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
-								echo '<span><img src="images/icon-compass.png" alt="">'.$weather->current->wind_degree.'<sup>o</sup></span>';
-                */
-							echo '</div>';
-						echo '</div>';
-            $i++;
-        }
-        else {
-            echo '<div class="forecast">';
-							echo '<div class="forecast-header">';
-								echo '<div class="day">'.$day->date.'</div>';
-							echo '</div> <!-- .forecast-header -->';
-							echo '<div class="forecast-content">';
-								echo '<div class="forecast-icon">';
-									echo '<img src="'.$day->day->condition->icon.'" alt="" width=48>';
-								echo '</div>';
-								echo '<div class="degree">'.$day->day->maxtemp_c.'<sup>o</sup>C</div>';
-								echo '<small>'.$day->day->mintemp_c.'<sup>o</sup></small>';
-							echo '</div>';
-						echo '</div>';
-        }
-      /*
-        echo "<tr><td colspan='4' border='0'><h2>{$day->date}</h2> Sunrise: {$day->astro->sunrise} <br> Sunset: {$day->astro->sunset}"
-        . "<br> condition: {$day->day->condition->text} <img src=' {$day->day->condition->icon}'/></td></tr>";
+	</head>
 
-        echo "<tr><td>&nbsp;</td><td>Max.<br>Temprature</td><td>Min.<br>Temprature</td><td>Avg.<br>Temprature</td></tr>";
 
-        echo "<tr><td>&deg;C</td><td>{$day->day->maxtemp_c}</td><td>{$day->day->mintemp_c}</td><td>{$day->day->avgtemp_c}</td></tr>";
-        echo "<tr><td>&deg;F</td><td>{$day->day->maxtemp_f}</td><td>{$day->day->mintemp_f}</td><td>{$day->day->avgtemp_f}</td></tr>";
+	<body>
+		
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="index.html" class="branding">
+						<img src="images/logo.png" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">IBM počasí</h1>
+							<small class="site-description">because fuck you</small>
+						</div>
+					</a>
 
-        echo "<tr><td><h4>Wind</h4></td><td colspan='3'>{$day->day->maxwind_mph}Mph <br> {$day->day->maxwind_kph}kph </td></tr>";
-          foreach ($day->hour as $hr){
-  
-              echo "<tr><td colspan='4' border='0'>";
-              echo "<table style='width:100%;'>";
-  
-              echo "<tr><td>Time</td><td>Temprature</td><td>Wind</td><td>Humidity</td></tr>";
-              echo "<tr><td><div>{$hr->time}<img src=' {$hr->condition->icon}'/></div></td><td>{$hr->temp_c}&deg;C<br>{$hr->temp_f}&deg;F</td><td>{$hr->wind_mph}Mph <br> {$hr->wind_kph}kph</td><td>$hr->humidity</td></tr>";
-  
-              echo "</table></tr></td>";
-          }*/
-    }
-    
-        echo "</div>";
-      echo "</div>";
-    echo "</div>";
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="index.html">Domů</a></li>
+							<li class="menu-item"><a href="first.html">Oblíbená města</a></li>
+							<li class="menu-item"><a href="second.html">Něco</a></li>
+							<li class="menu-item"><a target="_blank" href="cloud weather screen.html">Cloud weather screen</a></li>
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
+
+			<div class="hero" data-bg-image="images/banner.png">
+				<div class="container">
+					<form id="weatherForm" class="find-location">
+						<input id="weatherCity" list="json-datalist" type="text" placeholder="Vyhledat město pomocí názvu nebo PSČ">
+                        <datalist id="json-datalist"></datalist>
+						<input type="submit" value="Vyhledat">
+					</form>
+				</div>
+			</div>
+            
+			<div id="forecastTable" class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div class="day">Monday</div>
+								<div class="date">6 Oct</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="location">New York</div>
+								<div class="degree">
+									<div class="num">23<sup>o</sup>C</div>
+									<div class="forecast-icon">
+										<img src="images/icons/icon-1.svg" alt="" width=90>
+									</div>	
+								</div>
+								<span><img src="images/icon-umberella.png" alt="">20%</span>
+								<span><img src="images/icon-wind.png" alt="">18km/h</span>
+								<span><img src="images/icon-compass.png" alt="">East</span>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Tuesday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-3.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Wednesday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-5.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Thursday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-7.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Friday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-12.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Saturday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-13.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Sunday</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="images/icons/icon-14.svg" alt="" width=48>
+								</div>
+								<div class="degree">23<sup>o</sup>C</div>
+								<small>18<sup>o</sup></small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<main class="main-content">
+				
+
+				 <!-- .main-content -->
+
+			<footer class="site-footer">
+				<div class="container">
+
+					<p class="colophon">Fuck IBM Cloud.</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+		
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/app.js"></script>
+		
+	</body>
+
+</html>
