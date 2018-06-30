@@ -95,7 +95,7 @@ h3 {
 				foreach ($days as $day){
 						if($i == 0){
 									echo '<span class="border">COMPANY LOGO | '.$day->date.' | Teplota: '.$weather->current->temp_c.'°C | <img src="'.$day->day->condition->icon.'" alt="" width=30> | Dnes: '.$weather->forecast->forecastday[0]->day->mintemp_c.'-'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C </span><br>';
-
+									echo '<span class="border"> '.$weather->forecast->forecastday[1]->date' | '.$weather->forecast->forecastday[1]->day->mintemp_c.' - '.$weather->forecast->forecastday[1]->day->avgtemp_c.' - '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C | <img src="'.$weatherforecast->forecastday[1]->day->condition->icon.'" alt="" width=30></span>';
 										/*
 										echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
 										echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
