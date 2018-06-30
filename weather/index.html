@@ -20,10 +20,9 @@
 		<![endif]-->
         <script type="text/javascript">
         $("#weatherForm").submit(function(event) {
-            var input = document.getElementById('weather-city');
             $.ajax({                
                 type:"GET", 
-                url: "http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=" + input + "&days=7&=", 
+                url: "http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=", 
                 success: function(data) {
                         $("body").append(JSON.stringify(data));
                     }, 
