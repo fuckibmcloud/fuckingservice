@@ -87,10 +87,15 @@
 										    $i = 0;
 												foreach ($days as $day){
 														if($i == 0){
-																	echo '<p>Dnes:<ul><li> Teplota: '.$weather->current->temp_c.'°C  <img src="'.$day->day->condition->icon.'" alt="" width=30> </li>
-																	<li>Vývoj teplot: '.$weather->forecast->forecastday[0]->day->mintemp_c.'-'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C</li></ul><br>';
+																	echo '<p><ul><li>Dnes</li><li> Počasí: '.$weather->current->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$day->day->condition->icon.'" alt="" width=30> </li>
+																	<li>Průměrná teplota:'.$weather->forecast->forecastday[0]->day->avgtemp_c.' </li>
+																	<li>Srážky:'.$weather->current->precip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[0]->day->mintemp_c.'</li><li>Nejvyšší teplota:'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C</li></ul><br>';
 
-																	echo 'Zítra:<ul><li> Vývoj teplot:</li><li> '.$weather->forecast->forecastday[1]->day->mintemp_c.' - '.$weather->forecast->forecastday[1]->day->avgtemp_c.' - '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C | <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30></li></ul></p>';
+																	echo 'Zítra:<ul><li>Počasí:'.$weather->forecast->forecastday[1]->day->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30> </li>
+																	<li> Průměrná teplota:'.$weather->forecast->forecastday[1]->day->mintemp_c.'</li>
+<li> Srážky:'.$weather->forecast->forecastday[1]->day->totalprecip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[1]->day->avgtemp_c.'</li><li>Nejvyšší teplota: '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C </li></ul></p>';
 																		/*
 																		echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
 																		echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
