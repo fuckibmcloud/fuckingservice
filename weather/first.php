@@ -115,7 +115,7 @@
 										<?php
 
 												$key = "52c736a22dea47b1810101240181505";
-												$city = "Třinec";
+												$city = "Trinec";
 												$forcast_days = '7';
 												$url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
 
