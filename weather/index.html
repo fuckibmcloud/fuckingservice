@@ -20,8 +20,9 @@
 		<![endif]-->
         <script type="text/javascript">
         $("#weatherForm").submit(function(event) {
-            $.ajax({                
-                url: "backend/Forcast.php", 
+            $.ajax({           
+                type: "GET",     
+                url: "./backend/Forcast.php", 
                 success: function(data) {
                         $("body").append(data);
                     }, 
