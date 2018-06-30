@@ -21,15 +21,13 @@
         <script type="text/javascript">
         $("#weatherForm").submit(function(event) {
             $.ajax({                
-                type:"GET", 
                 url: "http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=", 
                 success: function(data) {
-                        $("body").append(JSON.stringify(data));
+                        $("body").append(data);
                     }, 
                 error: function(jqXHR, textStatus, errorThrown) {
                         alert(jqXHR.status);
-                    },
-               dataType: "jsonp"
+                    }
             });​​​​​​​​​​​​​​​
         });​​​​​​​​​​​​​​​
         
