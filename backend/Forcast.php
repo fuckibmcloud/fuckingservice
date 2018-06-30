@@ -22,7 +22,10 @@ table, th, td {
     {
         if($item->name == $city)
         {
-            $url ="http://api.apixu.com/v1/forecast.json?key=".$key."&q=".$item->lat.",".$item->lng."&days=".$forcast_days."&=";
+            $url = "http://api.apixu.com/v1/forecast.json?key=$key&q=$item->lat,$item->lng&days=$forcast_days&=";
+        }
+        else{
+            break;
         }
     }
 
