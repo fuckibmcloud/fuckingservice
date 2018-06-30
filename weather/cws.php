@@ -73,7 +73,6 @@ h3 {
 
 <div class="bgimg-1">
   <div class="caption">
-    <span class="border">Your company logo goes here</span><br>
 		<?php
 
 		    $key = "52c736a22dea47b1810101240181505";
@@ -95,12 +94,8 @@ h3 {
 		    $i = 0;
 				foreach ($days as $day){
 						if($i == 0){
+									echo '<span class="border">COMPANY LOGO | '.$day->date.' | '.$weather->location->name.'| '.$weather->location->country.'| <img src="'.$day->day->condition->icon.'" alt="" width=90></span><br>';
 
-									echo '<div class="date">'.$day->date.'</div>';
-
-										echo '<div class="location">'.$weather->location->name.',&nbsp;'.$weather->location->country.'</div>';
-										echo $weather->current->temp_c;
-												echo '<img src="'.$day->day->condition->icon.'" alt="" width=90>';
 										/*
 										echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
 										echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
