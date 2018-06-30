@@ -112,7 +112,45 @@
 									<div class="photo-preview photo-detail" data-bg-image="images/photo-4.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">Třinec</a></h3>
-										<p>Atatem accusantium aperiam eaque quae quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+										<?php
+
+												$key = "52c736a22dea47b1810101240181505";
+												$city = "Třinec";
+												$forcast_days = '7';
+												$url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
+
+												// demo url = http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=
+
+												$ch = curl_init();
+												curl_setopt($ch,CURLOPT_URL,$url);
+												curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+												$json_output=curl_exec($ch);
+												$weather = json_decode($json_output);
+
+
+												$days = $weather->forecast->forecastday;
+												$i = 0;
+												foreach ($days as $day){
+														if($i == 0){
+																	echo '<p><ul><li>Dnes</li><li> Počasí: '.$weather->current->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$day->day->condition->icon.'" alt="" width=30> </li>
+																	<li>Průměrná teplota:'.$weather->forecast->forecastday[0]->day->avgtemp_c.' </li>
+																	<li>Srážky:'.$weather->current->precip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[0]->day->mintemp_c.'</li><li>Nejvyšší teplota:'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C</li></ul><br>';
+
+																	echo 'Zítra:<ul><li>Počasí:'.$weather->forecast->forecastday[1]->day->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30> </li>
+																	<li> Průměrná teplota:'.$weather->forecast->forecastday[1]->day->mintemp_c.'</li>
+<li> Srážky:'.$weather->forecast->forecastday[1]->day->totalprecip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[1]->day->avgtemp_c.'</li><li>Nejvyšší teplota: '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C </li></ul></p>';
+																		/*
+																		echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
+																		echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
+																		echo '<span><img src="images/icon-compass.png" alt="">'.$weather->current->wind_degree.'<sup>o</sup></span>';
+																		*/
+																$i++;
+														}}
+
+												?>
 
 									</div>
 								</div>
@@ -124,7 +162,45 @@
 									<div class="photo-preview photo-detail" data-bg-image="images/photo-9.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">Praha</a></h3>
-										<p>Atatem accusantium aperiam eaque quae quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+										<?php
+
+												$key = "52c736a22dea47b1810101240181505";
+												$city = "Praha";
+												$forcast_days = '7';
+												$url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
+
+												// demo url = http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=
+
+												$ch = curl_init();
+												curl_setopt($ch,CURLOPT_URL,$url);
+												curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+												$json_output=curl_exec($ch);
+												$weather = json_decode($json_output);
+
+
+												$days = $weather->forecast->forecastday;
+												$i = 0;
+												foreach ($days as $day){
+														if($i == 0){
+																	echo '<p><ul><li>Dnes</li><li> Počasí: '.$weather->current->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$day->day->condition->icon.'" alt="" width=30> </li>
+																	<li>Průměrná teplota:'.$weather->forecast->forecastday[0]->day->avgtemp_c.' </li>
+																	<li>Srážky:'.$weather->current->precip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[0]->day->mintemp_c.'</li><li>Nejvyšší teplota:'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C</li></ul><br>';
+
+																	echo 'Zítra:<ul><li>Počasí:'.$weather->forecast->forecastday[1]->day->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30> </li>
+																	<li> Průměrná teplota:'.$weather->forecast->forecastday[1]->day->mintemp_c.'</li>
+<li> Srážky:'.$weather->forecast->forecastday[1]->day->totalprecip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[1]->day->avgtemp_c.'</li><li>Nejvyšší teplota: '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C </li></ul></p>';
+																		/*
+																		echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
+																		echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
+																		echo '<span><img src="images/icon-compass.png" alt="">'.$weather->current->wind_degree.'<sup>o</sup></span>';
+																		*/
+																$i++;
+														}}
+
+												?>
 
 									</div>
 								</div>
@@ -132,7 +208,45 @@
 									<div class="photo-preview photo-detail" data-bg-image="images/photo-10.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">Olomouc</a></h3>
-										<p>Atatem accusantium aperiam eaque quae quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+										<?php
+
+												$key = "52c736a22dea47b1810101240181505";
+												$city = "Olomouc";
+												$forcast_days = '7';
+												$url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
+
+												// demo url = http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=
+
+												$ch = curl_init();
+												curl_setopt($ch,CURLOPT_URL,$url);
+												curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+												$json_output=curl_exec($ch);
+												$weather = json_decode($json_output);
+
+
+												$days = $weather->forecast->forecastday;
+												$i = 0;
+												foreach ($days as $day){
+														if($i == 0){
+																	echo '<p><ul><li>Dnes</li><li> Počasí: '.$weather->current->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$day->day->condition->icon.'" alt="" width=30> </li>
+																	<li>Průměrná teplota:'.$weather->forecast->forecastday[0]->day->avgtemp_c.' </li>
+																	<li>Srážky:'.$weather->current->precip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[0]->day->mintemp_c.'</li><li>Nejvyšší teplota:'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C</li></ul><br>';
+
+																	echo 'Zítra:<ul><li>Počasí:'.$weather->forecast->forecastday[1]->day->condition->text.'  '.$weather->current->temp_c.'°C  <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30> </li>
+																	<li> Průměrná teplota:'.$weather->forecast->forecastday[1]->day->mintemp_c.'</li>
+<li> Srážky:'.$weather->forecast->forecastday[1]->day->totalprecip_mm.' mm</li>
+																	<li>Nejnižší teplota: '.$weather->forecast->forecastday[1]->day->avgtemp_c.'</li><li>Nejvyšší teplota: '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C </li></ul></p>';
+																		/*
+																		echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
+																		echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
+																		echo '<span><img src="images/icon-compass.png" alt="">'.$weather->current->wind_degree.'<sup>o</sup></span>';
+																		*/
+																$i++;
+														}}
+
+												?>
 
 									</div>
 								</div>
