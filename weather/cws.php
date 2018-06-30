@@ -94,7 +94,7 @@ h3 {
 		    $i = 0;
 				foreach ($days as $day){
 						if($i == 0){
-									echo '<span class="border">COMPANY LOGO | '.$day->date.' | Teplota: '.$weather->current->temp_c.'| <img src="'.$day->day->condition->icon.'" alt="" width=15> | Dnešní teploty: '.$weather->forecast->forecastday->mintemp.'-'.$weather->forecast->forecastday->maxtemp.' </span><br>';
+									echo '<span class="border">COMPANY LOGO | '.$day->date.' | Teplota: '.$weather->current->temp_c.'| <img src="'.$day->day->condition->icon.'" alt="" width=30> | Dnes: '.$weather->forecast->forecastday->day->mintemp.'-'.$weather->forecast->forecastday->day->maxtemp.' </span><br>';
 
 										/*
 										echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
