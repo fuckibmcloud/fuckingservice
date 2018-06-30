@@ -87,9 +87,10 @@
 										    $i = 0;
 												foreach ($days as $day){
 														if($i == 0){
-																	echo '<p> '.$day->date.' | Teplota: '.$weather->current->temp_c.'°C | <img src="'.$day->day->condition->icon.'" alt="" width=30> | Dnes: '.$weather->forecast->forecastday[0]->day->mintemp_c.'-'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C<br>';
+																	echo '<p>Dnes:<ul><li> Teplota: '.$weather->current->temp_c.'°C  <img src="'.$day->day->condition->icon.'" alt="" width=30> </li>
+																	<li>Vývoj teplot: '.$weather->forecast->forecastday[0]->day->mintemp_c.'-'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C</li></ul><br>';
 
-																	echo 'Zítra: '.$weather->forecast->forecastday[1]->day->mintemp_c.' - '.$weather->forecast->forecastday[1]->day->avgtemp_c.' - '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C | <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30></p>';
+																	echo 'Zítra:<ul><li> Vývoj teplot:</li><li> '.$weather->forecast->forecastday[1]->day->mintemp_c.' - '.$weather->forecast->forecastday[1]->day->avgtemp_c.' - '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C | <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30></li></ul></p>';
 																		/*
 																		echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
 																		echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
