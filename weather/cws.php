@@ -95,7 +95,7 @@ h3 {
 		    $i = 0;
 				foreach ($days as $day){
 						if($i == 0){
-							echo '<div class="today forecast">';
+							echo '<div class="caption today forecast">';
 								echo '<div class="forecast-header">';
 									echo '<div class="day">Today</div>';
 									echo '<div class="date">'.$day->date.'</div>';
