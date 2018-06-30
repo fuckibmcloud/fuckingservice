@@ -21,7 +21,7 @@
         <script type="text/javascript">
         $("#weatherForm").submit(function(event) {
             $.ajax({                
-                url: "http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=", 
+                url: "backend/Forcast.php", 
                 success: function(data) {
                         $("body").append(data);
                     }, 
