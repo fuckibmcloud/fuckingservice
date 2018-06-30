@@ -69,15 +69,13 @@ h3 {
 }
 </style>
 <body>
-<span>   Zde budou zobrazeny informace o počasí ve Vámi vybraném městě.</span>
-
 <div class="bgimg-1">
   <div class="caption">
 		<?php
 
 		    $key = "52c736a22dea47b1810101240181505";
 		    $city = "Brno";
-		    $forcast_days = '7';
+		    $forcast_days = '2';
 		    $url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
 
 		    // demo url = http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=
@@ -94,14 +92,10 @@ h3 {
 		    $i = 0;
 				foreach ($days as $day){
 						if($i == 0){
-									echo '<span class="border">COMPANY LOGO | '.$day->date.' | Teplota: '.$weather->current->temp_c.'°C | <img src="'.$day->day->condition->icon.'" alt="" width=30> | Dnes: '.$weather->forecast->forecastday[0]->day->mintemp_c.'-'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C </span><br>';
+									echo '<span class="border">BRNO, Czech republic | '.$day->date.' | Teplota: '.$weather->current->temp_c.'°C | <img src="'.$day->day->condition->icon.'" alt="" width=30> | Dnes: '.$weather->forecast->forecastday[0]->day->mintemp_c.'-'.$weather->forecast->forecastday[0]->day->maxtemp_c.'°C </span><br>';
 
 									echo '<span class="border"> Zítra: '.$weather->forecast->forecastday[1]->day->mintemp_c.' - '.$weather->forecast->forecastday[1]->day->avgtemp_c.' - '.$weather->forecast->forecastday[1]->day->maxtemp_c.'°C | <img src="'.$weather->forecast->forecastday[1]->day->condition->icon.'" alt="" width=30></span>';
-										/*
-										echo '<span><img src="images/icon-umberella.png" alt="">20%</span>';
-										echo '<span><img src="images/icon-wind.png" alt="">'.$weather->current->wind_kph.'&nbsp;km/h</span>';
-										echo '<span><img src="images/icon-compass.png" alt="">'.$weather->current->wind_degree.'<sup>o</sup></span>';
-										*/
+
 								$i++;
 						}}
 

@@ -14,24 +14,9 @@ table, th, td {
 
     $key = "52c736a22dea47b1810101240181505";
     $city = $_POST['data'];
-    
-    $cities = 'cities.json';
-    
-    $gpsData = json_decode($cities);
-    foreach($gpsData as $item)
-    {
-        if($item->name == $city)
-        {
-            $url = "http://api.apixu.com/v1/forecast.json?key=$key&q=$item->lat,$item->lng&days=$forcast_days&=";
-        }
-        else{
-            break;
-        }
-    }
-
     $forcast_days = '7';
+    $url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
     
-    // $url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
     // demo url = http://api.apixu.com/v1/forecast.json?key=52c736a22dea47b1810101240181505&q=trencin&days=7&=
 
     $ch = curl_init();
